@@ -87,7 +87,7 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapDown: (TapDownDetails details) {
                               _timer = Timer.periodic(
-                                  Duration(milliseconds: 100), (t) {
+                                  Duration(milliseconds: 500), (t) {
                                 isConnected ? _sendMessage('W') : null;
                               });
                             },
@@ -113,7 +113,7 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapDown: (TapDownDetails details) {
                               _timer = Timer.periodic(
-                                  Duration(milliseconds: 100), (t) {
+                                  Duration(milliseconds: 500), (t) {
                                 isConnected ? _sendMessage('A') : null;
                               });
                             },
@@ -138,7 +138,7 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapDown: (TapDownDetails details) {
                               _timer = Timer.periodic(
-                                  Duration(milliseconds: 100), (t) {
+                                  Duration(milliseconds: 500), (t) {
                                 isConnected ? _sendMessage('D') : null;
                               });
                             },
@@ -164,7 +164,7 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapDown: (TapDownDetails details) {
                               _timer = Timer.periodic(
-                                  Duration(milliseconds: 100), (t) {
+                                  Duration(milliseconds: 500), (t) {
                                 isConnected ? _sendMessage('S') : null;
                               });
                             },
