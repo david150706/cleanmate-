@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import './BluetoothDeviceListEntry.dart';
+import '../widgets/bluetooth_device_list_widget.dart';
 
 class SelectBondedDevicePage extends StatefulWidget {
   /// If true, on page start there is performed discovery upon the bonded devices.
@@ -27,8 +27,8 @@ class _DeviceWithAvailability extends BluetoothDevice {
   _DeviceAvailability availability;
   int? rssi;
 
-
-  _DeviceWithAvailability(this.device, this.availability, [this.rssi]) : super(address: device.address);
+  _DeviceWithAvailability(this.device, this.availability, [this.rssi])
+      : super(address: device.address);
 }
 
 class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
@@ -106,12 +106,10 @@ class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
     super.dispose();
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
-    List<BluetoothDeviceListEntry> list = devices
-        .map((_device) => BluetoothDeviceListEntry(
+    List<BluetoothDeviceListWidget> list = devices
+        .map((_device) => BluetoothDeviceListWidget(
               device: _device.device,
               rssi: _device.rssi,
               enabled: _device.availability == _DeviceAvailability.yes,
@@ -121,41 +119,52 @@ class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
             ))
         .toList();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        title: Text('Seleccionar dispositivo', 
-        style: Theme.of(context).textTheme.titleMedium,),
-        actions: <Widget>[
-          _isDiscovering
-              ? FittedBox(
-                  child: Container(
-                    margin: new EdgeInsets.all(16.0),
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.white,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          title: Text(
+            'Seleccionar dispositivo',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          actions: <Widget>[
+            _isDiscovering
+                ? FittedBox(
+                    child: Container(
+                      margin: new EdgeInsets.all(16.0),
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                )
-              : IconButton(
-                  icon: Icon(Icons.replay),
-                  onPressed: _restartDiscovery,
-                )
-        ],
-      ),
-      body: Column(children: [
-        ListTile(title: Text('¿No ves el dispositivo? Emparejalo primero',
-            style: Theme.of(context).textTheme.bodyMedium,
-            textAlign: TextAlign.center, 
-            ),
-            trailing: ElevatedButton(
+                  )
+                : IconButton(
+                    icon: Icon(Icons.replay),
+                    onPressed: _restartDiscovery,
+                  )
+          ],
+        ),
+        body: Column(
+          children: [
+            ListTile(
+              title: Text(
+                '¿No ves el dispositivo? Emparejalo primero',
+                style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
+              trailing: ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all(Color(0xffE7DBFF)),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.deepPurple),
+                ),
                 child: const Text('Configuración'),
                 onPressed: () {
                   FlutterBluetoothSerial.instance.openSettings();
                 },
-              ),), 
-        Expanded(child: ListView(children: list)),
-        ],)
-    );
+              ),
+            ),
+            Expanded(child: ListView(children: list)),
+          ],
+        ));
   }
 }

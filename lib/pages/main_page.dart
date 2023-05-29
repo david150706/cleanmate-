@@ -1,14 +1,12 @@
 import 'dart:async';
-import 'package:cleanmate/MainPageWidget.dart';
+import 'package:cleanmate/widgets/device_list_widget.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'communication.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import './SelectBondedDevicePage.dart';
-import './ChatPage.dart';
-//import './ChatPage2.dart';
-
+import 'chat_page.dart';
+import 'profile_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -65,14 +63,6 @@ class _MainPage extends State<MainPage> {
     });
   }
 
-  // This code is just a example if you need to change page and you need to communicate to the raspberry again
-  void init() async {
-    Communication com = Communication();
-    await com.connectBl(_address);
-    com.sendMessage("Hello");
-    setState(() {});
-  }
-
   @override
   void dispose() {
     FlutterBluetoothSerial.instance.setPairingRequestHandler(null);
@@ -84,16 +74,16 @@ class _MainPage extends State<MainPage> {
       _selectedIndex = index;
     });
   }
+
   Widget _page(index) {
     switch (index) {
       case 0:
-        return MainPageWidget();
-      case 1: 
-        return(Center(child: Icon(Icons.person),));
+        return DeviceListWidget();
+      case 1:
+        return ProfilePage();
       default:
-        return MainPageWidget();
+        return DeviceListWidget();
     }
-    
   }
 
   void requestBluetoothPermission() async {
@@ -110,36 +100,37 @@ class _MainPage extends State<MainPage> {
       openAppSettings();
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: BottomNavigationBar(
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            selectedIconTheme: Theme.of(context).bottomNavigationBarTheme.selectedIconTheme,
-            unselectedIconTheme: Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme,
-            backgroundColor: Color(0xff4D4D4D),
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-            iconSize: 40,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Account',
-              ),
-            ],
-          ),
+        borderRadius: BorderRadius.circular(30),
+        child: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          selectedIconTheme:
+              Theme.of(context).bottomNavigationBarTheme.selectedIconTheme,
+          unselectedIconTheme:
+              Theme.of(context).bottomNavigationBarTheme.unselectedIconTheme,
+          backgroundColor: Color(0xff4D4D4D),
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          iconSize: 40,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Account',
+            ),
+          ],
         ),
+      ),
       body: _page(_selectedIndex),
-      );
-
+    );
   }
 
   void _startChat(BuildContext context, BluetoothDevice server) {

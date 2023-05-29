@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "539488796281-s49lfqlqk395f4brhgm4grlecb8utupa.apps.googleusercontent.com",
+          "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +27,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "539488796281-s49lfqlqk395f4brhgm4grlecb8utupa.apps.googleusercontent.com",
+              "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -43,7 +43,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "539488796281-s49lfqlqk395f4brhgm4grlecb8utupa.apps.googleusercontent.com",
+          "client_id": "539488796281-4a6lpskneh2n1jm16ngkqtm7hprnnfk0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cleanmate",
+            "certificate_hash": "4944257af6f409c2cde7afca0c555b2ff837daef"
+          }
+        },
+        {
+          "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -56,7 +64,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "539488796281-s49lfqlqk395f4brhgm4grlecb8utupa.apps.googleusercontent.com",
+              "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
