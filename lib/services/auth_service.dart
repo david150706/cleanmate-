@@ -65,14 +65,14 @@ class AuthService with ChangeNotifier {
   Future updateUserData(User user, bool isSigningUp,
       {String? displayName}) async {
     DocumentReference userRef = _db.collection('users').doc(user.uid);
+    print(userRef);
 
-    userRef.set(
+    await userRef.set(
       {
         'uid': user.uid,
         'email': user.email,
-        'lastSign': DateTime.now(),
-        'photoURL': user.photoURL == null ? FieldValue : user.photoURL,
-        'displayName': isSigningUp ? displayName : (user.displayName == null ? FieldValue : user.displayName),
+        'photoURL': user.photoURL,
+        'displayName': isSigningUp ? displayName : user.displayName,
         'devices': [],
       },
     );

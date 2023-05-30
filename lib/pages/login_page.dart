@@ -39,8 +39,6 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text,
         password: passwordController.text,
       );
-      User user = authResult.user!;
-      await authService.updateUserData(user, false);
       // pop the loading circle
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
