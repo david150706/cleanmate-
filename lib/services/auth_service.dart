@@ -42,10 +42,12 @@ class AuthService with ChangeNotifier {
   Future<User?> googleSignIn() async {
     _status = AuthStatus.Authenticating;
     notifyListeners();
-
+    print('--------------');
     try {
+
       GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+      print('--------------');
       this._googleUser = googleUser;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
@@ -56,6 +58,8 @@ class AuthService with ChangeNotifier {
       User user = authResult.user!;
       await updateUserData(user, false);
     } catch (e) {
+      print('erroooooooooooooooooooooor');
+      print(e);
       _status = AuthStatus.Uninitialized;
       notifyListeners();
       return null;
