@@ -9,6 +9,7 @@ class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   Stream getUser(authService) {
+    debugPrint(authService.user.id);
     return FirebaseFirestore.instance
         .collection('users')
         .doc(authService.user.id)

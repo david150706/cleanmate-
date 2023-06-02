@@ -29,6 +29,13 @@
             {
               "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "539488796281-o2lr09eni31jv8lcqpjjdv8547ni5fta.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cleanmate"
+              }
             }
           ]
         }
@@ -51,6 +58,14 @@
           }
         },
         {
+          "client_id": "539488796281-8atg6bod1cq2du27f6fp9es3v3hn8r40.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cleanmate",
+            "certificate_hash": "04ce56fd7b626911d5c9997a639cd170cdcf9e26"
+          }
+        },
+        {
           "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -66,6 +81,13 @@
             {
               "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "539488796281-o2lr09eni31jv8lcqpjjdv8547ni5fta.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cleanmate"
+              }
             }
           ]
         }
