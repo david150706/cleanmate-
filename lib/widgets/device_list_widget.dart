@@ -102,93 +102,142 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-      child: Column(children: [
-        SizedBox(
-          height: 30,
-        ),
-        ListTile(
-          title: Text(
-            'DISPOSITIVOS',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-        ),
-        Expanded(
-          child: GridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 4.0,
-            mainAxisSpacing: 8.0,
-            children: [
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xffE7DBFF)),
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.deepPurple),
-                  side: MaterialStateProperty.all(
-                    const BorderSide(
-                      color: Color(0xffAF87FF),
-                      width: 5,
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .doc('users/${authService.user.id}')
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return Scaffold(
+              floatingActionButton: snapshot.data!['devices'].length == 0
+                  ? FloatingActionButton(
+                      child: Icon(
+                        Icons.add,
+                        size: 35,
+                      ),
+                      onPressed: () async {
+                        if (_bluetoothState == BluetoothState.STATE_ON) {
+                          selectedDevice = await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return SelectBondedDevicePage(
+                                    checkAvailability: false);
+                              },
+                            ),
+                          );
+
+                          if (selectedDevice != null) {
+                            await FirebaseFirestore.instance
+                                .doc('/users/${authService.user.id}')
+                                .update({
+                              'devices': FieldValue.arrayUnion([
+                                {'address': selectedDevice!.address}
+                              ])
+                            });
+                            _startChat(context, selectedDevice!);
+                          } 
+                          } else {
+                            final permission = await FlutterBluetoothSerial
+                                .instance
+                                .requestEnable();
+                            setState(() {});
+                            if (permission == true) {
+                              selectedDevice = await Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return SelectBondedDevicePage(
+                                        checkAvailability: false);
+                                  },
+                                ),
+                              );
+                            }
+                            if (selectedDevice != null) {
+                              await FirebaseFirestore.instance
+                                  .doc('/users/${authService.user.id}')
+                                  .update({
+                                'devices': FieldValue.arrayUnion([
+                                  {'address': selectedDevice!.address}
+                                ])
+                              });
+                              _startChat(context, selectedDevice!);
+                            }
+                          }
+                      })
+                  : null,
+              body: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                child: Column(children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Mis Dispositivos',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
-                ),
-                child: Icon(
-                  Icons.smart_toy,
-                  size: 100,
-                ),
-                onPressed: () async {
-                  if (_bluetoothState == BluetoothState.STATE_ON) {
-                    selectedDevice = await Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return SelectBondedDevicePage(
-                              checkAvailability: false);
-                        },
+                  if (snapshot.data!['devices'].length > 0)
+                    Expanded(
+                      child: GridView.count(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 4.0,
+                        mainAxisSpacing: 8.0,
+                        children: snapshot.data!['devices'].map((e) {
+                          return ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xffE7DBFF)),
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.deepPurple),
+                              side: MaterialStateProperty.all(
+                                const BorderSide(
+                                  color: Color(0xffAF87FF),
+                                  width: 5,
+                                ),
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.smart_toy,
+                              size: 100,
+                            ),
+                            onPressed: () async {
+                              if (_bluetoothState == BluetoothState.STATE_ON) {
+                                _startChat(context, e['address']);
+                              } else {
+                                final permission = await FlutterBluetoothSerial
+                                    .instance
+                                    .requestEnable();
+                                setState(() {});
+                                if (permission == true) {
+                                  _startChat(context, e['address']);
+                                }
+                              }
+                            },
+                          );
+                        }),
                       ),
-                    );
-
-                    if (selectedDevice != null) {
-                      debugPrint(
-                          'Connect -> selected ' + selectedDevice!.address);
-                      await FirebaseFirestore.instance
-                          .doc('/users/${authService.user.id}')
-                          .update({
-                        'devices': FieldValue.arrayUnion([
-                          {'address': selectedDevice!.address}
-                        ])
-                      });
-                      _startChat(context, selectedDevice!);
-                    } else {
-                      debugPrint('Connect -> no device selected');
-                    }
-                  } else {
-                    final permission =
-                        await FlutterBluetoothSerial.instance.requestEnable();
-                    setState(() {});
-                    if (permission == true) {
-                      selectedDevice = await Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return SelectBondedDevicePage(
-                                checkAvailability: false);
-                          },
+                    ),
+                  if (snapshot.data!['devices'].length == 0)
+                    Column(
+                      children: [
+                        SizedBox(height: 200),
+                        Center(
+                          child: Text('Aún no has añadido ningún dispositivo',),
                         ),
-                      );
-                    }
-                    if (selectedDevice != null) {
-                      print('Connect -> selected ' + selectedDevice!.address);
-                      _startChat(context, selectedDevice!);
-                    } else {
-                      print('Connect -> no device selected');
-                    }
-                  }
-                },
+                        SizedBox(height: 20),
+                        Icon(Icons.bluetooth_disabled_outlined, size: 70,)
+
+                      ],
+                    )
+                ]),
               ),
-            ],
-          ),
-        ),
-      ]),
-    );
+            );
+          }
+        });
   }
 }

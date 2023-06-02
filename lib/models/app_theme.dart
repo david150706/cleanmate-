@@ -15,6 +15,7 @@ class AppTheme {
           bodyMedium: TextStyle(
             color: Colors.white,
             fontSize: 16,
+            fontWeight: FontWeight.bold
           ),
           bodyLarge: TextStyle(
             color: Color(0xffE7DBFF),
@@ -44,7 +45,7 @@ class AppTheme {
           AppBarTheme(elevation: 0.0, backgroundColor: Colors.deepPurple),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         elevation: 2,
-        selectedIconTheme: IconThemeData(color: Color(0xff96FF8D)),
+        selectedIconTheme: IconThemeData(color: Colors.tealAccent),
         unselectedIconTheme: IconThemeData(color: Colors.white),
       ),
     );
