@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 class ChatPage extends StatefulWidget {
-  final BluetoothDevice server;
+  final String address;
 
-  const ChatPage({required this.server});
+  const ChatPage({required this.address});
 
   @override
   _ChatPage createState() => new _ChatPage();
@@ -34,7 +34,7 @@ class _ChatPage extends State<ChatPage> {
   void initState() {
     super.initState();
 
-    BluetoothConnection.toAddress(widget.server.address).then((_connection) {
+    BluetoothConnection.toAddress(widget.address).then((_connection) {
       print('Connected to the device');
       connection = _connection;
       setState(() {

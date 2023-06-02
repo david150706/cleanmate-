@@ -132,14 +132,4 @@ class _MainPage extends State<MainPage> {
       body: _page(_selectedIndex),
     );
   }
-
-  void _startChat(BuildContext context, BluetoothDevice server) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) {
-          return ChatPage(server: server);
-        },
-      ),
-    );
-  }
 }

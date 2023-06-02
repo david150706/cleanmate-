@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:cleanmate/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -74,11 +75,11 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
     super.dispose();
   }
 
-  void _startChat(BuildContext context, BluetoothDevice server) {
+  void _startChat(BuildContext context, String address) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return ChatPage(server: server);
+          return ChatPage(address: address,);
         },
       ),
     );
@@ -101,10 +102,11 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
     final authService = Provider.of<AuthService>(context);
     return StreamBuilder(
         stream: FirebaseFirestore.instance
-            .doc('users/${authService.user.id}')
+            .doc('/users/${auth.currentUser!.uid}')
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -138,7 +140,7 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
                                 {'address': selectedDevice!.address}
                               ])
                             });
-                            _startChat(context, selectedDevice!);
+                            _startChat(context, selectedDevice!.address);
                           } 
                           } else {
                             final permission = await FlutterBluetoothSerial
@@ -163,7 +165,7 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
                                   {'address': selectedDevice!.address}
                                 ])
                               });
-                              _startChat(context, selectedDevice!);
+                              _startChat(context, selectedDevice!.address);
                             }
                           }
                       })
@@ -187,7 +189,7 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
                         crossAxisCount: 2,
                         crossAxisSpacing: 4.0,
                         mainAxisSpacing: 8.0,
-                        children: snapshot.data!['devices'].map((e) {
+                        children: snapshot.data!['devices'].map<Widget>((e) {
                           return ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor:
@@ -219,7 +221,7 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
                               }
                             },
                           );
-                        }),
+                        }).toList(),
                       ),
                     ),
                   if (snapshot.data!['devices'].length == 0)
