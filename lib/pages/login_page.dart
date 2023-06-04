@@ -90,7 +90,6 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context) {
         return const AlertDialog(
-          backgroundColor: Colors.deepPurple,
           title: Center(
             child: Text(
               'Correo Incorrecto',
@@ -108,11 +107,13 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context) {
         return const AlertDialog(
-          backgroundColor: Colors.deepPurple,
           title: Center(
             child: Text(
               'Contraseña Incorrecta',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         );
@@ -191,6 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                   MyButton(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
+                        FocusManager.instance.primaryFocus?.unfocus();
                         if (_isSigningIn) {
                           signUserIn();
                         } else {
@@ -242,6 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: const SquareTile(
                             imagePath: 'lib/images/google.png'),
                         onTap: () async {
+                          FocusManager.instance.primaryFocus?.unfocus();
                           await authService.googleSignIn();
                         },
                       ),

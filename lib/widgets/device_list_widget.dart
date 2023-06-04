@@ -79,7 +79,9 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return ChatPage(address: address,);
+          return ChatPage(
+            address: address,
+          );
         },
       ),
     );
@@ -141,33 +143,33 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
                               ])
                             });
                             _startChat(context, selectedDevice!.address);
-                          } 
-                          } else {
-                            final permission = await FlutterBluetoothSerial
-                                .instance
-                                .requestEnable();
-                            setState(() {});
-                            if (permission == true) {
-                              selectedDevice = await Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return SelectBondedDevicePage(
-                                        checkAvailability: false);
-                                  },
-                                ),
-                              );
-                            }
-                            if (selectedDevice != null) {
-                              await FirebaseFirestore.instance
-                                  .doc('/users/${authService.user.id}')
-                                  .update({
-                                'devices': FieldValue.arrayUnion([
-                                  {'address': selectedDevice!.address}
-                                ])
-                              });
-                              _startChat(context, selectedDevice!.address);
-                            }
                           }
+                        } else {
+                          final permission = await FlutterBluetoothSerial
+                              .instance
+                              .requestEnable();
+                          setState(() {});
+                          if (permission == true) {
+                            selectedDevice = await Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return SelectBondedDevicePage(
+                                      checkAvailability: false);
+                                },
+                              ),
+                            );
+                          }
+                          if (selectedDevice != null) {
+                            await FirebaseFirestore.instance
+                                .doc('/users/${authService.user.id}')
+                                .update({
+                              'devices': FieldValue.arrayUnion([
+                                {'address': selectedDevice!.address}
+                              ])
+                            });
+                            _startChat(context, selectedDevice!.address);
+                          }
+                        }
                       })
                   : null,
               body: Padding(
@@ -229,11 +231,15 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
                       children: [
                         SizedBox(height: 200),
                         Center(
-                          child: Text('Aún no has añadido ningún dispositivo',),
+                          child: Text(
+                            'Aún no has añadido ningún dispositivo',
+                          ),
                         ),
                         SizedBox(height: 20),
-                        Icon(Icons.bluetooth_disabled_outlined, size: 70,)
-
+                        Icon(
+                          Icons.bluetooth_disabled_outlined,
+                          size: 70,
+                        )
                       ],
                     )
                 ]),

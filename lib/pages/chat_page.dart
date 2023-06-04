@@ -42,7 +42,12 @@ class _ChatPage extends State<ChatPage> {
         isDisconnecting = false;
       });
     }).catchError((error) {
+      setState(() {
+        isConnecting = false;
+        isDisconnecting = false;
+      });
       print('Cannot connect, exception occured');
+      print(isConnecting);
       print(error);
     });
   }
@@ -180,7 +185,17 @@ class _ChatPage extends State<ChatPage> {
                     ],
                   ),
                 )
-              : Center(child: Text('No se pudo conectar con el dispositivo')),
+              : Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('No se pudo conectar con el dispositivo',
+                          style: Theme.of(context).textTheme.displayMedium),
+                      SizedBox(height: 20),
+                      Icon(Icons.sentiment_very_dissatisfied_rounded, size: 70),
+                    ],
+                  ),
+                ),
     );
   }
 

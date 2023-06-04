@@ -4,27 +4,29 @@ class AppTheme {
   static ThemeData themeData(BuildContext context) {
     return ThemeData(
       textTheme: const TextTheme(
-          titleLarge: TextStyle(
-            color: Color(0xffAF87FF),
-            fontSize: 30,
-          ),
-          titleMedium: TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-          ),
-          bodyMedium: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold
-          ),
-          bodyLarge: TextStyle(
-            color: Color(0xffE7DBFF),
-            fontSize: 22,
-          ),
-          bodySmall: TextStyle(
-            color: Colors.deepPurple,
-            fontSize: 16,
-          )),
+        titleLarge: TextStyle(
+          color: Color(0xffAF87FF),
+          fontSize: 30,
+        ),
+        titleMedium: TextStyle(
+          color: Colors.white,
+          fontSize: 22,
+        ),
+        bodyMedium: TextStyle(
+            color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+        bodyLarge: TextStyle(
+          color: Color(0xffE7DBFF),
+          fontSize: 22,
+        ),
+        bodySmall: TextStyle(
+          color: Colors.deepPurple,
+          fontSize: 16,
+        ),
+        displayMedium: TextStyle(
+          color: Colors.white, fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
+      ),
       primarySwatch: Colors.deepPurple,
       primaryColor: Colors.black,
       backgroundColor: Colors.black,
