@@ -29,6 +29,7 @@ class _ChatPage extends State<ChatPage> {
   bool isDisconnecting = false;
   Timer? _timer;
   String result = '';
+  bool _isAutomatic = false;
 
   @override
   void initState() {
@@ -182,6 +183,27 @@ class _ChatPage extends State<ChatPage> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 30,),
+                      Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+                            onPressed: () {
+                              if(_isAutomatic){
+                                setState(() {
+                                  _isAutomatic = false;
+                                });
+                                isConnected ? _sendMessage('0') : null;
+                              }
+                              else {
+                                setState(() {
+                                  _isAutomatic = true;
+                                });
+                                isConnected ? _sendMessage('1') : null;
+                                }
+                              },
+                            child: _isAutomatic ? Text('Detener') : Text('Automático')),
+                        ],)
                     ],
                   ),
                 )

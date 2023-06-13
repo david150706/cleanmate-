@@ -117,8 +117,7 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
             );
           } else {
             return Scaffold(
-              floatingActionButton: snapshot.data!['devices'].length == 0
-                  ? FloatingActionButton(
+              floatingActionButton: FloatingActionButton(
                       child: Icon(
                         Icons.add,
                         size: 35,
@@ -171,7 +170,7 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
                           }
                         }
                       })
-                  : null,
+                  ,
               body: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 child: Column(children: [
