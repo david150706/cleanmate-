@@ -13,17 +13,8 @@ class ChatPage extends StatefulWidget {
   _ChatPage createState() => new _ChatPage();
 }
 
-class _Message {
-  int whom;
-  String text;
-
-  _Message(this.whom, this.text);
-}
-
 class _ChatPage extends State<ChatPage> {
-  static final clientID = 0;
   BluetoothConnection? connection;
-  List<_Message> messages = [];
   bool isConnecting = true;
   bool get isConnected => connection != null && connection!.isConnected;
   bool isDisconnecting = false;
@@ -99,9 +90,11 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapUp: (TapUpDetails details) {
                               _timer?.cancel();
+                              isConnected ? _sendMessage('X') : null;
                             },
                             onTapCancel: () {
                               _timer?.cancel();
+                              isConnected ? _sendMessage('X') : null;
                             },
                           ),
                         ],
@@ -125,9 +118,11 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapUp: (TapUpDetails details) {
                               _timer?.cancel();
+                              isConnected ? _sendMessage('X') : null;
                             },
                             onTapCancel: () {
                               _timer?.cancel();
+                              isConnected ? _sendMessage('X') : null;
                             },
                           ),
                           SizedBox(
@@ -150,9 +145,11 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapUp: (TapUpDetails details) {
                               _timer?.cancel();
+                              isConnected ? _sendMessage('X') : null;
                             },
                             onTapCancel: () {
                               _timer?.cancel();
+                              isConnected ? _sendMessage('X') : null;
                             },
                           ),
                         ],
@@ -176,9 +173,11 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapUp: (TapUpDetails details) {
                               _timer?.cancel();
+                              isConnected ? _sendMessage('X') : null;
                             },
                             onTapCancel: () {
                               _timer?.cancel();
+                              isConnected ? _sendMessage('X') : null;
                             },
                           ),
                         ],

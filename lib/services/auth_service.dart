@@ -70,16 +70,17 @@ class AuthService with ChangeNotifier {
       {String? displayName}) async {
     DocumentReference userRef = _db.collection('users').doc(user.uid);
     print(userRef);
-
-    await userRef.set(
-      {
-        'uid': user.uid,
-        'email': user.email,
-        'photoURL': user.photoURL,
-        'displayName': isSigningUp ? displayName : user.displayName,
-        'devices': [],
-      },
-    );
+    if (isSigningUp){
+      await userRef.set(
+        {
+          'uid': user.uid,
+          'email': user.email,
+          'photoURL': user.photoURL,
+          'displayName': isSigningUp ? displayName : user.displayName,
+          'devices': [],
+        },
+      );
+    }
   }
 
   void signOut() {
