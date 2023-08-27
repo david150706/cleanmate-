@@ -78,7 +78,11 @@ class _ChatPage extends State<ChatPage> {
                             child: SizedBox(
                                 width: 70,
                                 height: 70,
-                                child: Icon(Icons.arrow_upward)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.deepPurple, 
+                                    shape: BoxShape.circle),
+                                  child: Icon(Icons.arrow_upward))),
                             onTap: () {
                               isConnected ? _sendMessage('W') : null;
                             },
@@ -106,7 +110,11 @@ class _ChatPage extends State<ChatPage> {
                             child: SizedBox(
                                 width: 70,
                                 height: 70,
-                                child: Icon(Icons.arrow_back)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.deepPurple, 
+                                    shape: BoxShape.circle),
+                                  child: Icon(Icons.arrow_back))),
                             onTap: () {
                               isConnected ? _sendMessage('A') : null;
                             },
@@ -133,7 +141,11 @@ class _ChatPage extends State<ChatPage> {
                             child: SizedBox(
                                 width: 70,
                                 height: 70,
-                                child: Icon(Icons.arrow_forward)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.deepPurple, 
+                                    shape: BoxShape.circle),
+                                  child: Icon(Icons.arrow_forward))),
                             onTap: () {
                               isConnected ? _sendMessage('D') : null;
                             },
@@ -161,7 +173,11 @@ class _ChatPage extends State<ChatPage> {
                             child: SizedBox(
                                 width: 70,
                                 height: 70,
-                                child: Icon(Icons.arrow_downward)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.deepPurple, 
+                                    shape: BoxShape.circle),
+                                  child: Icon(Icons.arrow_downward))),
                             onTap: () {
                               isConnected ? _sendMessage('S') : null;
                             },
@@ -182,7 +198,7 @@ class _ChatPage extends State<ChatPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 30,),
+                      SizedBox(height: 100,),
                       Row(mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ElevatedButton(
@@ -201,7 +217,7 @@ class _ChatPage extends State<ChatPage> {
                                 isConnected ? _sendMessage('1') : null;
                                 }
                               },
-                            child: _isAutomatic ? Text('Detener') : Text('Automático')),
+                            child: _isAutomatic ? Text('Detener') : Text('Modo automático')),
                         ],)
                     ],
                   ),
