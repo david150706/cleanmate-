@@ -1,4 +1,4 @@
-package com.example.cleanmate
+package com.inggonce.cleanmate
 
 import io.flutter.embedding.android.FlutterActivity
 

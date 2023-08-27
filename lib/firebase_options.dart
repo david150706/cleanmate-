@@ -69,7 +69,7 @@ class DefaultFirebaseOptions {
     storageBucket: 'cleanmate-df969.appspot.com',
     androidClientId: '539488796281-4a6lpskneh2n1jm16ngkqtm7hprnnfk0.apps.googleusercontent.com',
     iosClientId: '539488796281-o2lr09eni31jv8lcqpjjdv8547ni5fta.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cleanmate',
+    iosBundleId: 'com.inggonce.cleanmate',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -80,6 +80,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'cleanmate-df969.appspot.com',
     androidClientId: '539488796281-4a6lpskneh2n1jm16ngkqtm7hprnnfk0.apps.googleusercontent.com',
     iosClientId: '539488796281-o2lr09eni31jv8lcqpjjdv8547ni5fta.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cleanmate',
+    iosBundleId: 'com.inggonce.cleanmate',
   );
 }

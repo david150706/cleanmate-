@@ -34,7 +34,7 @@
               "client_id": "539488796281-o2lr09eni31jv8lcqpjjdv8547ni5fta.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.cleanmate"
+                "bundle_id": "com.inggonce.cleanmate"
               }
             }
           ]
@@ -45,7 +45,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:539488796281:android:5703cde2147e202a675ea8",
         "android_client_info": {
-          "package_name": "com.example.cleanmate"
+          "package_name": "com.inggonce.cleanmate"
         }
       },
       "oauth_client": [
@@ -53,7 +53,7 @@
           "client_id": "539488796281-4a6lpskneh2n1jm16ngkqtm7hprnnfk0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.cleanmate",
+            "package_name": "com.inggonce.cleanmate",
             "certificate_hash": "4944257af6f409c2cde7afca0c555b2ff837daef"
           }
         },
@@ -61,7 +61,7 @@
           "client_id": "539488796281-8atg6bod1cq2du27f6fp9es3v3hn8r40.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.cleanmate",
+            "package_name": "com.inggonce.cleanmate",
             "certificate_hash": "04ce56fd7b626911d5c9997a639cd170cdcf9e26"
           }
         },
@@ -86,7 +86,7 @@
               "client_id": "539488796281-o2lr09eni31jv8lcqpjjdv8547ni5fta.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.cleanmate"
+                "bundle_id": "com.inggonce.cleanmate"
               }
             }
           ]
