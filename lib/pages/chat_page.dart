@@ -93,12 +93,18 @@ class _ChatPage extends State<ChatPage> {
                               });
                             },
                             onTapUp: (TapUpDetails details) {
+                              _timer = Timer.periodic(
+                                  Duration(milliseconds: 500), (t) {
+                                isConnected ? _sendMessage('X') : null;
+                              });
                               _timer?.cancel();
-                              isConnected ? _sendMessage('X') : null;
                             },
                             onTapCancel: () {
+                              _timer = Timer.periodic(
+                                  Duration(milliseconds: 500), (t) {
+                                isConnected ? _sendMessage('X') : null;
+                              });
                               _timer?.cancel();
-                              isConnected ? _sendMessage('X') : null;
                             },
                           ),
                         ],
@@ -116,9 +122,11 @@ class _ChatPage extends State<ChatPage> {
                                     shape: BoxShape.circle),
                                   child: Icon(Icons.arrow_back))),
                             onTap: () {
+                              _timer?.cancel();
                               isConnected ? _sendMessage('A') : null;
                             },
                             onTapDown: (TapDownDetails details) {
+                              _timer?.cancel();
                               _timer = Timer.periodic(
                                   Duration(milliseconds: 500), (t) {
                                 isConnected ? _sendMessage('A') : null;
@@ -126,11 +134,17 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapUp: (TapUpDetails details) {
                               _timer?.cancel();
-                              isConnected ? _sendMessage('X') : null;
+                              _timer = Timer.periodic(
+                                  Duration(milliseconds: 500), (t) {
+                                isConnected ? _sendMessage('X') : null;
+                              });
                             },
                             onTapCancel: () {
                               _timer?.cancel();
-                              isConnected ? _sendMessage('X') : null;
+                              _timer = Timer.periodic(
+                                  Duration(milliseconds: 500), (t) {
+                                isConnected ? _sendMessage('X') : null;
+                              });
                             },
                           ),
                           SizedBox(
@@ -147,9 +161,11 @@ class _ChatPage extends State<ChatPage> {
                                     shape: BoxShape.circle),
                                   child: Icon(Icons.arrow_forward))),
                             onTap: () {
+                              _timer?.cancel();
                               isConnected ? _sendMessage('D') : null;
                             },
                             onTapDown: (TapDownDetails details) {
+                              _timer?.cancel();
                               _timer = Timer.periodic(
                                   Duration(milliseconds: 500), (t) {
                                 isConnected ? _sendMessage('D') : null;
@@ -157,11 +173,17 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapUp: (TapUpDetails details) {
                               _timer?.cancel();
-                              isConnected ? _sendMessage('X') : null;
+                              _timer = Timer.periodic(
+                                  Duration(milliseconds: 500), (t) {
+                                isConnected ? _sendMessage('X') : null;
+                              });
                             },
                             onTapCancel: () {
                               _timer?.cancel();
-                              isConnected ? _sendMessage('X') : null;
+                              _timer = Timer.periodic(
+                                  Duration(milliseconds: 500), (t) {
+                                isConnected ? _sendMessage('X') : null;
+                              });
                             },
                           ),
                         ],
@@ -179,9 +201,11 @@ class _ChatPage extends State<ChatPage> {
                                     shape: BoxShape.circle),
                                   child: Icon(Icons.arrow_downward))),
                             onTap: () {
+                              _timer?.cancel();
                               isConnected ? _sendMessage('S') : null;
                             },
                             onTapDown: (TapDownDetails details) {
+                              _timer?.cancel();
                               _timer = Timer.periodic(
                                   Duration(milliseconds: 500), (t) {
                                 isConnected ? _sendMessage('S') : null;
@@ -189,11 +213,17 @@ class _ChatPage extends State<ChatPage> {
                             },
                             onTapUp: (TapUpDetails details) {
                               _timer?.cancel();
-                              isConnected ? _sendMessage('X') : null;
+                              _timer = Timer.periodic(
+                                  Duration(milliseconds: 500), (t) {
+                                isConnected ? _sendMessage('X') : null;
+                              });
                             },
                             onTapCancel: () {
                               _timer?.cancel();
-                              isConnected ? _sendMessage('X') : null;
+                              _timer = Timer.periodic(
+                                  Duration(milliseconds: 500), (t) {
+                                isConnected ? _sendMessage('X') : null;
+                              });
                             },
                           ),
                         ],
