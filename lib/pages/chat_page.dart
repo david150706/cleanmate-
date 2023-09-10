@@ -56,6 +56,13 @@ class _ChatPage extends State<ChatPage> {
     super.dispose();
   }
 
+  void timerFunction(String char) {
+    _timer = Timer.periodic(
+        Duration(milliseconds: 500), (t) {
+      isConnected ? _sendMessage(char) : null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,20 +91,16 @@ class _ChatPage extends State<ChatPage> {
                                     shape: BoxShape.circle),
                                   child: Icon(Icons.arrow_upward))),
                             onTap: () {
-                              isConnected ? _sendMessage('W') : null;
+                              //isConnected ? _sendMessage('W') : null;
                             },
                             onTapDown: (TapDownDetails details) {
-                              _timer = Timer.periodic(
-                                  Duration(milliseconds: 500), (t) {
-                                isConnected ? _sendMessage('W') : null;
-                              });
+                              //_timer?.cancel();
+                              isConnected ? _sendMessage('W') : null;
                             },
                             onTapUp: (TapUpDetails details) {
-                              _timer?.cancel();
                               isConnected ? _sendMessage('X') : null;
                             },
                             onTapCancel: () {
-                              _timer?.cancel();
                               isConnected ? _sendMessage('X') : null;
                             },
                           ),
@@ -116,20 +119,15 @@ class _ChatPage extends State<ChatPage> {
                                     shape: BoxShape.circle),
                                   child: Icon(Icons.arrow_back))),
                             onTap: () {
-                              isConnected ? _sendMessage('A') : null;
+                              //isConnected ? _sendMessage('A') : null;
                             },
                             onTapDown: (TapDownDetails details) {
-                              _timer = Timer.periodic(
-                                  Duration(milliseconds: 500), (t) {
-                                isConnected ? _sendMessage('A') : null;
-                              });
+                              isConnected ? _sendMessage('A') : null;
                             },
                             onTapUp: (TapUpDetails details) {
-                              _timer?.cancel();
                               isConnected ? _sendMessage('X') : null;
                             },
                             onTapCancel: () {
-                              _timer?.cancel();
                               isConnected ? _sendMessage('X') : null;
                             },
                           ),
@@ -147,20 +145,15 @@ class _ChatPage extends State<ChatPage> {
                                     shape: BoxShape.circle),
                                   child: Icon(Icons.arrow_forward))),
                             onTap: () {
-                              isConnected ? _sendMessage('D') : null;
+                              //isConnected ? _sendMessage('D') : null;
                             },
                             onTapDown: (TapDownDetails details) {
-                              _timer = Timer.periodic(
-                                  Duration(milliseconds: 500), (t) {
-                                isConnected ? _sendMessage('D') : null;
-                              });
+                              isConnected ? _sendMessage('D') : null;
                             },
                             onTapUp: (TapUpDetails details) {
-                              _timer?.cancel();
                               isConnected ? _sendMessage('X') : null;
                             },
                             onTapCancel: () {
-                              _timer?.cancel();
                               isConnected ? _sendMessage('X') : null;
                             },
                           ),
@@ -179,20 +172,15 @@ class _ChatPage extends State<ChatPage> {
                                     shape: BoxShape.circle),
                                   child: Icon(Icons.arrow_downward))),
                             onTap: () {
-                              isConnected ? _sendMessage('S') : null;
+                              //isConnected ? _sendMessage('S') : null;
                             },
                             onTapDown: (TapDownDetails details) {
-                              _timer = Timer.periodic(
-                                  Duration(milliseconds: 500), (t) {
-                                isConnected ? _sendMessage('S') : null;
-                              });
+                              isConnected ? _sendMessage('S') : null;
                             },
                             onTapUp: (TapUpDetails details) {
-                              _timer?.cancel();
                               isConnected ? _sendMessage('X') : null;
                             },
                             onTapCancel: () {
-                              _timer?.cancel();
                               isConnected ? _sendMessage('X') : null;
                             },
                           ),
