@@ -118,59 +118,57 @@ class _DeviceListWidgetState extends State<DeviceListWidget> {
           } else {
             return Scaffold(
               floatingActionButton: FloatingActionButton(
-                      child: Icon(
-                        Icons.add,
-                        size: 35,
-                      ),
-                      onPressed: () async {
-                        if (_bluetoothState == BluetoothState.STATE_ON) {
-                          selectedDevice = await Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return SelectBondedDevicePage(
-                                    checkAvailability: false);
-                              },
-                            ),
-                          );
+                  child: Icon(
+                    Icons.add,
+                    size: 35,
+                  ),
+                  onPressed: () async {
+                    if (_bluetoothState == BluetoothState.STATE_ON) {
+                      selectedDevice = await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SelectBondedDevicePage(
+                                checkAvailability: false);
+                          },
+                        ),
+                      );
 
-                          if (selectedDevice != null) {
-                            await FirebaseFirestore.instance
-                                .doc('/users/${authService.user.id}')
-                                .update({
-                              'devices': FieldValue.arrayUnion([
-                                {'address': selectedDevice!.address}
-                              ])
-                            });
-                            _startChat(context, selectedDevice!.address);
-                          }
-                        } else {
-                          final permission = await FlutterBluetoothSerial
-                              .instance
-                              .requestEnable();
-                          setState(() {});
-                          if (permission == true) {
-                            selectedDevice = await Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return SelectBondedDevicePage(
-                                      checkAvailability: false);
-                                },
-                              ),
-                            );
-                          }
-                          if (selectedDevice != null) {
-                            await FirebaseFirestore.instance
-                                .doc('/users/${authService.user.id}')
-                                .update({
-                              'devices': FieldValue.arrayUnion([
-                                {'address': selectedDevice!.address}
-                              ])
-                            });
-                            _startChat(context, selectedDevice!.address);
-                          }
-                        }
-                      })
-                  ,
+                      if (selectedDevice != null) {
+                        await FirebaseFirestore.instance
+                            .doc('/users/${authService.user.id}')
+                            .update({
+                          'devices': FieldValue.arrayUnion([
+                            {'address': selectedDevice!.address}
+                          ])
+                        });
+                        _startChat(context, selectedDevice!.address);
+                      }
+                    } else {
+                      final permission =
+                          await FlutterBluetoothSerial.instance.requestEnable();
+                      setState(() {});
+                      if (permission == true) {
+                        selectedDevice = await Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SelectBondedDevicePage(
+                                  checkAvailability: false);
+                            },
+                          ),
+                        );
+                      }
+                      if (selectedDevice != null) {
+                        await FirebaseFirestore.instance
+                            .doc('/users/${authService.user.id}')
+                            .update({
+                          'devices': FieldValue.arrayUnion([
+                            {'address': selectedDevice!.address}
+                          ])
+                        });
+                        _startChat(context, selectedDevice!.address);
+                      }
+                    }
+                  }),
               body: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 child: Column(children: [

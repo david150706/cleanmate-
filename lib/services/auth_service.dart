@@ -44,7 +44,6 @@ class AuthService with ChangeNotifier {
     notifyListeners();
     print('--------------');
     try {
-
       GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
       print('--------------');
@@ -70,7 +69,7 @@ class AuthService with ChangeNotifier {
       {String? displayName}) async {
     DocumentReference userRef = _db.collection('users').doc(user.uid);
     print(userRef);
-    if (isSigningUp){
+    if (isSigningUp) {
       await userRef.set(
         {
           'uid': user.uid,
@@ -86,6 +85,11 @@ class AuthService with ChangeNotifier {
   void signOut() {
     _auth.signOut();
     _status = AuthStatus.Unauthenticated;
+    notifyListeners();
+  }
+
+  void updateAuthStatus(AuthStatus st) {
+    _status = st;
     notifyListeners();
   }
 

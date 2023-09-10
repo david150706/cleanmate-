@@ -23,7 +23,8 @@ class AppTheme {
           fontSize: 16,
         ),
         displayMedium: TextStyle(
-          color: Colors.white, fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
           fontSize: 20,
         ),
       ),

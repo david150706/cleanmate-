@@ -147,7 +147,7 @@ class _SelectBondedDevicePage extends State<SelectBondedDevicePage> {
           children: [
             ListTile(
               title: Text(
-                '¿No ves el dispositivo? Emparejalo primero',
+                '¿No ves el dispositivo? Emparéjalo primero',
                 style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),

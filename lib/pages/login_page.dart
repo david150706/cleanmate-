@@ -24,25 +24,26 @@ class _LoginPageState extends State<LoginPage> {
   // sign user in method
   void signUserIn() async {
     // show loading circle
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (context) {
+    //     return const Center(
+    //       child: CircularProgressIndicator(),
+    //     );
+    //   },
+    // );
     final authService = Provider.of<AuthService>(context, listen: false);
     // try sign in
+    authService.updateAuthStatus(AuthStatus.Authenticating);
     try {
       final authResult = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
       // pop the loading circle
-      Navigator.pop(context);
+      //Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
+      //Navigator.pop(context);
       // WRONG EMAIL
       if (e.code == 'user-not-found') {
         // show error to user
@@ -59,16 +60,17 @@ class _LoginPageState extends State<LoginPage> {
 
   void signUserUp() async {
     // show loading circle
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (context) {
+    //     return const Center(
+    //       child: CircularProgressIndicator(),
+    //     );
+    //   },
+    // );
     final authService = Provider.of<AuthService>(context, listen: false);
     // try sign up
+    authService.updateAuthStatus(AuthStatus.Authenticating);
     try {
       final authResult =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -79,8 +81,18 @@ class _LoginPageState extends State<LoginPage> {
       await authService.updateUserData(user, true,
           displayName: usernameController.text);
       // pop the loading circle
-      Navigator.pop(context);
-    } catch (e) {}
+      //Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        // show error to user
+        emailInUseMessage();
+      }
+      if (e.code == 'weak-password') {
+        // show error to user
+        weakPassword();
+      }
+      print(e);
+    }
     //TODO: Notificar si el correo ya esta en uso
   }
 
@@ -89,13 +101,29 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return const AlertDialog(
+        return AlertDialog(
+          backgroundColor: Colors.black,
           title: Center(
             child: Text(
               'Correo Incorrecto',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
             ),
           ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'ACEPTAR',
+                  style: TextStyle(
+                    color: Color(0xffAF87FF),
+                  ),
+                ))
+          ],
         );
       },
     );
@@ -106,16 +134,93 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return const AlertDialog(
+        return AlertDialog(
+          backgroundColor: Colors.black,
           title: Center(
             child: Text(
               'Contraseña Incorrecta',
               style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
+                color: Colors.white,
+                fontSize: 16,
+              ),
             ),
           ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'ACEPTAR',
+                  style: TextStyle(
+                    color: Color(0xffAF87FF),
+                  ),
+                ))
+          ],
+        );
+      },
+    );
+  }
+
+  void emailInUseMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          title: Center(
+            child: Text(
+              'El correo ya está en uso',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'ACEPTAR',
+                  style: TextStyle(
+                    color: Color(0xffAF87FF),
+                  ),
+                ))
+          ],
+        );
+      },
+    );
+  }
+
+  void weakPassword() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          title: Center(
+            child: Text(
+              'La contraseña debe tener al menos 6 caracteres',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'ACEPTAR',
+                  style: TextStyle(
+                    color: Color(0xffAF87FF),
+                  ),
+                ))
+          ],
         );
       },
     );

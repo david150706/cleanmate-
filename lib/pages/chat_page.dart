@@ -57,8 +57,7 @@ class _ChatPage extends State<ChatPage> {
   }
 
   void timerFunction(String char) {
-    _timer = Timer.periodic(
-        Duration(milliseconds: 500), (t) {
+    _timer = Timer.periodic(Duration(milliseconds: 500), (t) {
       isConnected ? _sendMessage(char) : null;
     });
   }
@@ -86,10 +85,10 @@ class _ChatPage extends State<ChatPage> {
                                 width: 70,
                                 height: 70,
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.deepPurple, 
-                                    shape: BoxShape.circle),
-                                  child: Icon(Icons.arrow_upward))),
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepPurple,
+                                        shape: BoxShape.circle),
+                                    child: Icon(Icons.arrow_upward))),
                             onTap: () {
                               //isConnected ? _sendMessage('W') : null;
                             },
@@ -114,10 +113,10 @@ class _ChatPage extends State<ChatPage> {
                                 width: 70,
                                 height: 70,
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.deepPurple, 
-                                    shape: BoxShape.circle),
-                                  child: Icon(Icons.arrow_back))),
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepPurple,
+                                        shape: BoxShape.circle),
+                                    child: Icon(Icons.arrow_back))),
                             onTap: () {
                               //isConnected ? _sendMessage('A') : null;
                             },
@@ -140,10 +139,10 @@ class _ChatPage extends State<ChatPage> {
                                 width: 70,
                                 height: 70,
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.deepPurple, 
-                                    shape: BoxShape.circle),
-                                  child: Icon(Icons.arrow_forward))),
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepPurple,
+                                        shape: BoxShape.circle),
+                                    child: Icon(Icons.arrow_forward))),
                             onTap: () {
                               //isConnected ? _sendMessage('D') : null;
                             },
@@ -167,10 +166,10 @@ class _ChatPage extends State<ChatPage> {
                                 width: 70,
                                 height: 70,
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.deepPurple, 
-                                    shape: BoxShape.circle),
-                                  child: Icon(Icons.arrow_downward))),
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepPurple,
+                                        shape: BoxShape.circle),
+                                    child: Icon(Icons.arrow_downward))),
                             onTap: () {
                               //isConnected ? _sendMessage('S') : null;
                             },
@@ -186,27 +185,33 @@ class _ChatPage extends State<ChatPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 100,),
-                      Row(mainAxisAlignment: MainAxisAlignment.center,
+                      SizedBox(
+                        height: 100,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ElevatedButton(
-                            style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
-                            onPressed: () {
-                              if(_isAutomatic){
-                                setState(() {
-                                  _isAutomatic = false;
-                                });
-                                isConnected ? _sendMessage('0') : null;
-                              }
-                              else {
-                                setState(() {
-                                  _isAutomatic = true;
-                                });
-                                isConnected ? _sendMessage('1') : null;
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.deepPurple),
+                              onPressed: () {
+                                if (_isAutomatic) {
+                                  setState(() {
+                                    _isAutomatic = false;
+                                  });
+                                  isConnected ? _sendMessage('0') : null;
+                                } else {
+                                  setState(() {
+                                    _isAutomatic = true;
+                                  });
+                                  isConnected ? _sendMessage('1') : null;
                                 }
                               },
-                            child: _isAutomatic ? Text('Detener') : Text('Modo automático')),
-                        ],)
+                              child: _isAutomatic
+                                  ? Text('Detener')
+                                  : Text('Modo automático')),
+                        ],
+                      )
                     ],
                   ),
                 )
