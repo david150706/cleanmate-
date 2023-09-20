@@ -7,106 +7,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:539488796281:android:8afee16f03583b74675ea8",
-        "android_client_info": {
-          "package_name": "com.example.appg9"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC3b23gOoaLD2-WRZUg4PnhNdWi3r57x5Y"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "539488796281-o2lr09eni31jv8lcqpjjdv8547ni5fta.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.cleanmate"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:539488796281:android:5703cde2147e202a675ea8",
-        "android_client_info": {
-          "package_name": "com.example.cleanmate"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "539488796281-4a6lpskneh2n1jm16ngkqtm7hprnnfk0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.cleanmate",
-            "certificate_hash": "4944257af6f409c2cde7afca0c555b2ff837daef"
-          }
-        },
-        {
-          "client_id": "539488796281-8atg6bod1cq2du27f6fp9es3v3hn8r40.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.cleanmate",
-            "certificate_hash": "04ce56fd7b626911d5c9997a639cd170cdcf9e26"
-          }
-        },
-        {
-          "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC3b23gOoaLD2-WRZUg4PnhNdWi3r57x5Y"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "539488796281-o2lr09eni31jv8lcqpjjdv8547ni5fta.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.cleanmate"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:539488796281:android:483055a3ec6f23a5675ea8",
+        "mobilesdk_app_id": "1:539488796281:android:6585ef6c15dd5efe675ea8",
         "android_client_info": {
           "package_name": "com.inggonce.cleanmate"
         }
       },
       "oauth_client": [
         {
-          "client_id": "539488796281-b8lgjahmaprnbc1fcglm59g4bmhhvm6c.apps.googleusercontent.com",
+          "client_id": "539488796281-aqt70b0oto1dfboot7jqasnqmmil65j6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.inggonce.cleanmate",
-            "certificate_hash": "4944257af6f409c2cde7afca0c555b2ff837daef"
+            "certificate_hash": "04ce56fd7b626911d5c9997a639cd170cdcf9e26"
           }
         },
         {
