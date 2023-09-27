@@ -21,6 +21,7 @@ class _ChatPage extends State<ChatPage> {
   Timer? _timer;
   String result = '';
   bool _isAutomatic = false;
+  bool switchValue = false;
 
   @override
   void initState() {
@@ -77,6 +78,25 @@ class _ChatPage extends State<ChatPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text('Aspirado', style: TextStyle(fontSize: 18),),
+                          Switch(value: switchValue, 
+                          activeColor: Colors.tealAccent,
+                          onChanged: (value) {
+                            setState(() {
+                              switchValue = value;
+                            });
+                            if (value) {
+                              isConnected ? _sendMessage('V') : null;
+                            } else {
+                              isConnected ? _sendMessage('P') : null;
+                            }
+                          },),
+                        ],
+                      ),
+                      SizedBox(height: 90),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -188,6 +208,7 @@ class _ChatPage extends State<ChatPage> {
                       SizedBox(
                         height: 100,
                       ),
+                      
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
