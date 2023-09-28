@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "539488796281-b8lgjahmaprnbc1fcglm59g4bmhhvm6c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inggonce.cleanmate",
+            "certificate_hash": "4944257af6f409c2cde7afca0c555b2ff837daef"
+          }
+        },
+        {
           "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
           "client_type": 3
         }
