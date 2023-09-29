@@ -30,6 +30,22 @@
           }
         },
         {
+          "client_id": "539488796281-ej4rgpd054gjdt70ehf9bglm40mhtrsg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inggonce.cleanmate",
+            "certificate_hash": "4fde9081edd815db91185660ae2870a177b4b836"
+          }
+        },
+        {
+          "client_id": "539488796281-s665ue7pv06dbfa7hri9mf48em2mn7ia.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inggonce.cleanmate",
+            "certificate_hash": "386a1745fb63fe2b3b57e9b51125fb712b04c59a"
+          }
+        },
+        {
           "client_id": "539488796281-gsi6vd9mk1o7nhtfeo07tks27elj0a5h.apps.googleusercontent.com",
           "client_type": 3
         }
